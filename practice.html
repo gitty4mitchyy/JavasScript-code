@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <title>Falling Rectangles Game</title>
+    <style>
+    #game-area {
+    width: 90%;
+    height: 600px;
+    border: 1px solid black;
+   }
+
+    .rectangle {
+    position: absolute;
+   }
+    </style>
+</head>
+<body>
+    <div id="game-area">
+        <div id="score">Score: 0</div>
+    </div>
+    <script>
+class Rectangle {
+    constructor(x, y, width, height, color, speed) {
+        this.element = document.createElement("div");
+        this.element.classList.add("rectangle");
+        this.element.style.width = width + "px";
+        this.element.style.height = height + "px";
+        this.element.style.backgroundColor = color;
+        this.element.style.left = x + "px";
+        this.element.style.top = y + "px";
+        this.speed = speed;
+        document.getElementById("game-area").appendChild(this.element);
+    }
+
+    update() {
+        this.element.style.top = parseInt(this.element.style.top) + this.speed + "px";
+        if (parseInt(this.element.style.top) > 600) {
+            this.element.remove();
+        }
+    }
+}
+
+const gameArea = document.getElementById("game-area");
+const scoreElement = document.getElementById("score");
+let score = 0;
+
+function createRectangle() {
+    const x = Math.random() * (gameArea.clientWidth - 20);
+    const y = 0;
+    const width = Math.random() * 50 + 10;
+    const height = Math.random() * 50 + 10;
+    const color = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+    const speed = Math.random() * 3 + 1;
+    const rectangle = new Rectangle(x, y, width, height, color, speed);
+    rectangles.push(rectangle);
+}
+
+const rectangles = [];
+setInterval(createRectangle, 1000);
+
+function updateGame() {
+    rectangles.forEach(rectangle => {
+        rectangle.update();
+    });
+    scoreElement.textContent = "Score: " + score;
+}
+
+setInterval(updateGame, 10);
+
+gameArea.addEventListener("click", event => {
+    const target = event.target;
+    if (target.classList.contains("rectangle")) {
+        target.remove();
+        score++;
+    }
+});
+    </script>
+    
+</body>
+</html>

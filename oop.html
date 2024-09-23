@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+    // function Student (height, age, gender, name, classname) {
+    //     this.height = height ,
+    //     this.age = age ,
+    //     this.gender = gender ,
+    //     this.name = name ,
+    //     this.classname = classname
+    //     this.introduceYourself = function () {
+    //         return `my name is ${this.name}, I am a student of ${this.classname}, ${this.gender}, ${this.age}, and I am ${this.height}`
+    //     }
+    // }
+
+    // Student.prototype.sayAge = function () {
+    //     return.thisage
+    // }
+
+    // let student1 = new Student('6ft', '18' , 'male' , 'Sam' , 'SS3')
+    // console.log(student1.introduceYourself());
+    // console.log(student1);
+
+    // let student2 = new Student('5ft', '58' , 'female' , 'Cat' , '300lvl')
+    // console.log(student2.introduceYourself());
+    // console.log(student2);
+
+    class Student {
+        constructor(height, age, gender, name, classname) {
+            this.height = height ,
+            this.age = age ,
+            this.gender = gender ,
+            this.name = name ,
+            this.classname = classname
+        }
+
+        graduate() {
+            if (this.age >= 25) {
+                return `you have graduated`
+            } else{
+                return `you cannot graduate at the moment`
+            }
+
+        }
+
+        set growOlder({age , height}) {
+            this.age = ++age
+            this.height = height
+        }
+        
+    }
+
+    let mastersStudent = new Student('5ft', 24, 'female', 'tola', 'masters')
+    console.log(mastersStudent.graduate());
+    mastersStudent.growOlder = { age : mastersStudent.age, height: "5'2ft"}
+    console.log(mastersStudent.age, mastersStudent.height);
+    mastersStudent.growOlder = { age : mastersStudent.age, height: "5'2ft"}
+    console.log(mastersStudent.age, mastersStudent.height);
+    console.log(mastersStudent.graduate)
+
+</script>
